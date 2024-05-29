@@ -4,10 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevBtn = document.getElementById("prevBtn");
     const dateCal = document.getElementById("cal");
     const scoreSpan = document.getElementById("score");
+    const dailyBtn = document.getElementById("DailyBtn");
+    const longTermBtn = document.getElementById("longTermBtn");
 
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const today = new Date().toDateString();
-
+    const longTermTasks = new Date(0).toDateString();
     let date = new Date();
     let month = date.getMonth();
     let year = date.getFullYear();
@@ -21,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     nextBtn.addEventListener("click", () => changeMonth(1));
     prevBtn.addEventListener("click", () => changeMonth(-1));
+    dailyBtn.addEventListener("click", () => createTodoModal(today));
+    longTermBtn.addEventListener("click", () => createTodoModal(longTermTasks));
 
     function changeMonth(offset) {
         month += offset;
@@ -65,6 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (completedDays.includes(dayDate)) {
                 dayDiv.style.backgroundColor = "lightgreen";
+            } else if (todoObj[dayDate] && todoObj[dayDate].some(task => !task.completed)) {
+                dayDiv.style.backgroundColor = "lightcoral"; // Mark days with incomplete tasks
             }
 
             dayDiv.addEventListener("click", () => createTodoModal(dayDate));
@@ -85,6 +91,26 @@ document.addEventListener("DOMContentLoaded", function () {
         closeButton.classList.add("xbtn");
         closeButton.innerText = "X";
         closeButton.addEventListener("click", () => backDiv.remove());
+        dayData === longTermTasks ?  closeButton.style.backgroundColor="#55c2b5" : "#c790fb";
+        dayData === longTermTasks ?  closeButton.addEventListener("mouseover",()=>{closeButton.style.cssText=`
+        background-color:#31a093;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+        dayData === longTermTasks ?  closeButton.addEventListener("mouseout",()=>{closeButton.style.cssText=`
+        background-color:#55c2b5;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+
+        dayData === today ?  closeButton.style.backgroundColor="#f87d74" : "#c790fb";
+        dayData === today ?  closeButton.addEventListener("mouseover",()=>{closeButton.style.cssText=`
+        background-color:#f9a59f;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+        dayData === today ?  closeButton.addEventListener("mouseout",()=>{closeButton.style.cssText=`
+        background-color:#f87d74;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+
         backDiv.appendChild(closeButton);
 
         let containerDiv = document.createElement("div");
@@ -97,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function initTodoList(container, dayData) {
         container.innerHTML = `
-            <h1>Todo List</h1>
+            <h1>${dayData === longTermTasks ? "Long-Term Goals" : "Daily ToDos"} </h1>
             <div class="taskEntry">
                 <input type="text" class="task-input" placeholder="Enter task">
                 <button class="add-task-btn"><img src="./add.svg" alt="Add"></button>
@@ -111,6 +137,44 @@ document.addEventListener("DOMContentLoaded", function () {
         const taskList = container.querySelector(".task-list");
         const addTaskBtn = container.querySelector(".add-task-btn");
         const clearAllBtn = container.querySelector(".clear-all-btn");
+
+        dayData === longTermTasks ? addTaskBtn.style.backgroundColor="#55c2b5" : "#c790fb";
+        dayData === longTermTasks ?  addTaskBtn.addEventListener("mouseover",()=>{addTaskBtn.style.cssText=`
+        background-color:#31a093;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+        dayData === longTermTasks ?  addTaskBtn.addEventListener("mouseout",()=>{addTaskBtn.style.cssText=`
+        background-color:#55c2b5;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+
+        dayData === today ?  addTaskBtn.style.backgroundColor="#f87d74" : "#c790fb";
+        dayData === today ?  addTaskBtn.addEventListener("mouseover",()=>{addTaskBtn.style.cssText=`
+        background-color:#f9a59f;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+        dayData === today ?  addTaskBtn.addEventListener("mouseout",()=>{addTaskBtn.style.cssText=`
+        background-color:#f87d74;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+        dayData === longTermTasks ? clearAllBtn.style.backgroundColor="#55c2b5" : "#c790fb";
+        dayData === longTermTasks ?  clearAllBtn.addEventListener("mouseover",()=>{clearAllBtn.style.cssText=`
+        background-color:#31a093;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+        dayData === longTermTasks ?  clearAllBtn.addEventListener("mouseout",()=>{clearAllBtn.style.cssText=`
+        background-color:#55c2b5;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+        dayData === today ?  clearAllBtn.style.backgroundColor="#f87d74" : "#c790fb";
+        dayData === today ?  clearAllBtn.addEventListener("mouseover",()=>{clearAllBtn.style.cssText=`
+        background-color:#f9a59f;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+        dayData === today ?  clearAllBtn.addEventListener("mouseout",()=>{clearAllBtn.style.cssText=`
+        background-color:#f87d74;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
 
         let storedTasks = todoObj[dayData] || [];
         storedTasks.forEach(task => appendTask(task.text, task.completed, taskList, dayData));
@@ -141,7 +205,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         taskItem.querySelector(".task-checkbox").addEventListener("change", () => updateTaskStatus(taskItem, taskList, dayData));
         taskItem.querySelector(".delete-btn").addEventListener("click", () => deleteTask(taskItem, taskList, dayData));
+        dayData === longTermTasks ? taskItem.querySelector(".delete-btn").style.backgroundColor="#55c2b5" : "#c790fb";
+        dayData === longTermTasks ?  taskItem.style.backgroundColor="#d4e6e4" : "#c790fb";
+        dayData === longTermTasks ?  taskItem.querySelector(".delete-btn").addEventListener("mouseover",()=>{taskItem.querySelector(".delete-btn").style.cssText=`
+        background-color:#31a093;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+        dayData === longTermTasks ?  taskItem.querySelector(".delete-btn").addEventListener("mouseout",()=>{taskItem.querySelector(".delete-btn").style.cssText=`
+        background-color:#55c2b5;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
 
+        dayData === today ?  taskItem.querySelector(".delete-btn").style.backgroundColor="#f87d74" : "#c790fb";
+        dayData === today ?  taskItem.querySelector(".delete-btn").addEventListener("mouseover",()=>{taskItem.querySelector(".delete-btn").style.cssText=`
+        background-color:#f9a59f;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+        dayData === today ?  taskItem.querySelector(".delete-btn").addEventListener("mouseout",()=>{taskItem.querySelector(".delete-btn").style.cssText=`
+        background-color:#f87d74;
+        transition: all 500ms ease-in-out;
+        `}) : "#c790fb";
+       
         taskList.appendChild(taskItem);
         updateStoredTasks(dayData, taskList);
     }
@@ -178,19 +262,25 @@ document.addEventListener("DOMContentLoaded", function () {
         let allCompleted = dayTasks.length > 0 && dayTasks.every(task => task.completed);
         let dayDiv = daysContainer.querySelector(`[data-date='${dayData}']`);
 
-        if (allCompleted) {
-            dayDiv.style.backgroundColor = "lightgreen";
-            if (!completedDays.includes(dayData)) {
-                completedDays.push(dayData);
-                score++;
+        if (dayDiv) { // Check if dayDiv is not null
+            if (allCompleted) {
+                dayDiv.style.backgroundColor = "lightgreen";
+                if (!completedDays.includes(dayData)) {
+                    completedDays.push(dayData);
+                    score++;
+                }
+            } else {
+                if (dayTasks.length > 0) {
+                    dayDiv.style.backgroundColor = "lightcoral"; // Mark days with incomplete tasks
+                } else {
+                    dayDiv.style.backgroundColor = "";
+                }
+                completedDays = completedDays.filter(date => date !== dayData);
+                score = completedDays.length;
             }
-        } else {
-            dayDiv.style.backgroundColor = "";
-            completedDays = completedDays.filter(date => date !== dayData);
-            score = completedDays.length;
-        }
 
-        localStorage.setItem("completedDays", JSON.stringify(completedDays));
-        scoreSpan.innerText = `${score}`;
+            localStorage.setItem("completedDays", JSON.stringify(completedDays));
+            scoreSpan.innerText = `${score}`;
+        }
     }
 });
