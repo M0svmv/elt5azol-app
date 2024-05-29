@@ -361,3 +361,9 @@ main {
     font-size: .7rem;
   }
 }
+
+@media (max-width: 450px){
+  .soretSpider h2{
+    font-size: 0.8rem;
+  }
+}
