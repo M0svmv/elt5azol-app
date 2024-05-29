@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./sand-clock-icon.svg" type="image/x-icon">
+    <title>تطبيق التخاذل</title>
+</head>
+
+<body>
+    <div class="soretSpider">
+        <img src="./spider.jpeg" alt="">
+        <div class="scoreDiv">
+            <h2>you were productive in <div id="score"></div> days!!</h2>
+        </div>
+    </div>
+
+    <main>
+        <div class="table">
+            <div class="tableHeader">
+                <button class="prev" id="prevBtn"><img src="./previous.png" alt=""></button>
+                <h2 class="date" id="cal">Date</h2>
+                <button class="next" id="nextBtn"><img src="./next.png" alt=""></button>
+            </div>
+            <div class="week-day">
+                <div class="week">
+                    <div class="dayname">Sun</div>
+                    <div class="dayname">Mon</div>
+                    <div class="dayname">Tue</div>
+                    <div class="dayname">Wed</div>
+                    <div class="dayname">Thrs</div>
+                    <div class="dayname">Fri</div>
+                    <div class="dayname">Sat</div>
+                </div>
+                <div class="days" id="days"></div>
+            </div>
+        </div>
+    </main>
+    <script src="./script.js"></script>
+</body>
+
+</html>
