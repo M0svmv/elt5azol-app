@@ -66,6 +66,46 @@ main {
   margin: 10px 0;
 }
 
+.btns{
+  display: flex;
+
+}
+.featuresBtns{
+  display: flex;
+  gap:7px;
+}
+
+.featuresBtns button{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 500ms ease-in-out;
+
+}
+
+.daily{
+  background-color:#fed2cf ;
+  border: 3px solid #000;
+}
+
+.daily:hover{
+  background-color:#f87d74 ;
+  
+}
+
+.longTerm{
+  background-color:#d0ece8 ;
+  border: 3px solid #000;
+}
+
+.longTerm:hover{
+  background-color:#52cbbd ;
+  
+}
+
+
+
 .prev, .next {
   display: flex;
   justify-content: center;
@@ -291,12 +331,16 @@ main {
   transition: all 500ms ease-in-out;
 }
 
+
 /* Responsive Styles */
 @media (max-width: 600px) {
+  .soretSpider h2{
+    font-size: 1rem;
+  }
   .dayname, .day {
     width: calc(100% / 7 - 7px);
     height: 40px;
-    font-size: 0.8em;
+    font-size: 0.8rem;
   }
   .backDiv{
     display: flex;
@@ -305,7 +349,6 @@ main {
   }
   .container {
     width: 97%;
-    
     
   }
 
